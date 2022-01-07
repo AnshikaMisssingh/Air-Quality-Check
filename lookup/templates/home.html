@@ -1,0 +1,32 @@
+{% extends 'base.html' %}    
+    
+{% block content %}
+<head>
+    <style> 
+        .alert{
+            width: 1400px;
+            height: 250px;
+            margin-top: 50px;
+            margin-left: 40px;
+            
+        }
+    </style>
+</head>
+
+    {% if api %}
+        {% if api == "No Data Available" %}
+            No Data is currenlty available for your entered zipcode. Try another zipcode or after some time.
+
+        {% else %}
+        <div class="alert alert-dark {{ category_color }}" role="alert">
+            <div class="container">
+                <h1 class="display-4">{{api.0.Category.Name}}</h1>
+                <p class="lead"> Currently {{api.0.ReportingArea}} Air Quality is {{api.0.AQI}}</p>
+                <hr class="my-10" style="background-color: black;">
+                <p>{{category_description}}</p>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
